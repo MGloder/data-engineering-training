@@ -1,2 +1,7 @@
+*.idea
 *.class
 *.log
+*.target
+/project
+data-engineering-workshop.iml
+/target
