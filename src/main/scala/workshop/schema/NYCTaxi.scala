@@ -1,14 +1,16 @@
 package workshop.schema
 
+import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util
 import java.util.Locale
 
-import org.joda.time.DateTime
 import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}
 
 import scala.util.Try
 
 case class TaxiRide(val rideId: Long,
-                    val time: DateTime,
+                    val time: Date,
                     val isStart: Boolean,
                     val location: GeoPoint,
                     val passengerCount: Short,
@@ -39,7 +41,7 @@ object TaxiRide {
 
     Try {
       val rideId = tokens(0).toLong
-      val time = DateTime.parse(tokens(1), TimeFormatter)
+      val time: Date = new Date(new SimpleDateFormat("yyyy-MM-DD HH:mm:ss").parse(tokens(1)).getTime)
       val isStart = tokens(2) == "START"
       val lon = if (tokens(3).length > 0) tokens(3).toDouble else 0.0
       val lat = if (tokens(4).length > 0) tokens(4).toDouble else 0.0
