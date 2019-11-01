@@ -2,7 +2,6 @@ package workshop.schema
 
 import java.sql.Date
 import java.text.SimpleDateFormat
-import java.util
 import java.util.Locale
 
 import org.joda.time.format.{DateTimeFormat, DateTimeFormatter}

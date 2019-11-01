@@ -2,7 +2,6 @@ package workshop.topic.sql
 
 import com.typesafe.config.ConfigFactory
 import org.apache.log4j.{Level, LogManager, Logger}
-import org.apache.spark.sql.types.{BooleanType, LongType, StructType, TimestampType}
 import org.apache.spark.sql.{Dataset, SparkSession}
 import workshop.schema.TaxiRide
 
@@ -23,19 +22,9 @@ object SQLExplainedTest {
 
     import spark.implicits._
 
-    /*
-    val rideId: Long,
-                    val time: DateTime,
-                    val isStart: Boolean,
-                    val location: GeoPoint,
-                    val passengerCount: Short,
-                    val travelDistance: Float)
-     */
-//    val jsonSchema = new StructType().add("rideId", LongType).add("time", TimestampType)
-
     val taxiRideDS: Dataset[TaxiRide] = nycTaxiData.map(line => TaxiRide.fromString(line)).as[TaxiRide]
 
-    taxiRideDS.printSchema()
+    println(taxiRideDS.explain())
 
     spark.stop()
   }
